@@ -88,7 +88,6 @@ except according to those terms.
       <keyword>match</keyword>
       <keyword>mod</keyword>
       <keyword>move</keyword>
-      <keyword>ref</keyword>
       <keyword>return</keyword>
       <keyword>struct</keyword>
       <keyword>super</keyword>
@@ -144,6 +143,7 @@ except according to those terms.
       <keyword>pub</keyword>
       <keyword>unsafe</keyword>
       <keyword>dyn</keyword>
+      <keyword>ref</keyword>
     </context>
 
     <context id="self" style-ref="self">
