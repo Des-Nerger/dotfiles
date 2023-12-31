@@ -22,7 +22,7 @@
 
 <language id="toml" name="TOML" version="2.0" _section="Other">
   <metadata>
-    <property name="globs">*.toml;*.tml;*.lock</property>
+    <property name="globs">*._toml;*.tml;*.lock</property>
     <property name="line-comment-start">#</property>
   </metadata>
 

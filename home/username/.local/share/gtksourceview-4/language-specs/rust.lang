@@ -76,7 +76,7 @@ except according to those terms.
       <keyword>break</keyword>
       <keyword>continue</keyword>
       <keyword>crate</keyword>
-      <keyword>default</keyword>
+      <!--keyword>default</keyword-->
       <keyword>else</keyword>
       <keyword>enum</keyword>
       <keyword>for</keyword>

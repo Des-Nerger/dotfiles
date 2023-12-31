@@ -84,6 +84,7 @@
       <keyword>interface</keyword>
       <keyword>native</keyword>
       <keyword>throws</keyword>
+      <keyword>var</keyword>
     </context>
 
     <context id="primitive-types" style-ref="type">
@@ -136,7 +137,7 @@
     <context id="memory" style-ref="keyword">
       <keyword>new</keyword>
       <keyword>super</keyword>
-      <keyword>this</keyword>
+      <!-- keyword>this</keyword -->
       <keyword>instanceof</keyword>
     </context>
 
