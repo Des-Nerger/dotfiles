@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="zig" name="Zig" version="2.0" _section="Source">
+  <metadata>
+    <property name="mimetypes">text/zig</property>
+    <property name="globs">*.zig</property>
+    <property name="line-comment-start">//</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"    name="Comment"       map-to="def:comment"/>
+    <style id="constant"   name="Constant"      map-to="def:constant"/>
+    <style id="string"     name="String"        map-to="def:string"/>
+    <style id="char"       name="Character"     map-to="def:character"/>
+    <style id="keyword"    name="Keyword"       map-to="def:keyword"/>
+    <style id="type"       name="Data Type"     map-to="def:type"/>
+    <style id="boolean"    name="Boolean value" map-to="def:boolean"/>
+    <style id="identifier" name="Identifier"    map-to="def:identifier"/>
+    <style id="number"     name="Number"        map-to="def:number"/>
+    <style id="error"      name="Error"         map-to="def:error"/>
+  </styles>
+
+  <definitions>
+
+    <context id="function" style-ref="keyword">
+      <keyword>fn</keyword>
+    </context>
+
+    <context id="type" style-ref="keyword">
+      <keyword>type</keyword>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>align</keyword>
+      <keyword>allowzero</keyword>
+      <keyword>anytype</keyword>
+      <keyword>and</keyword>
+      <keyword>asm</keyword>
+      <keyword>async</keyword>
+      <keyword>await</keyword>
+      <keyword>break</keyword>
+      <keyword>callconv</keyword>
+      <keyword>catch</keyword>
+      <keyword>comptime</keyword>
+      <keyword>const</keyword>
+      <keyword>continue</keyword>
+      <keyword>defer</keyword>
+      <keyword>else</keyword>
+      <keyword>enum</keyword>
+      <keyword>errdefer</keyword>
+      <keyword>error</keyword>
+      <keyword>export</keyword>
+      <keyword>extern</keyword>
+      <keyword>for</keyword>
+      <keyword>if</keyword>
+      <keyword>inline</keyword>
+      <keyword>noalias</keyword>
+      <keyword>or</keyword>
+      <keyword>orelse</keyword>
+      <keyword>packed</keyword>
+      <keyword>promise</keyword>
+      <keyword>pub</keyword>
+      <keyword>resume</keyword>
+      <keyword>return</keyword>
+      <keyword>linksection</keyword>
+      <keyword>opaque</keyword>
+      <keyword>struct</keyword>
+      <keyword>suspend</keyword>
+      <keyword>switch</keyword>
+      <keyword>test</keyword>
+      <keyword>threadlocal</keyword>
+      <keyword>try</keyword>
+      <keyword>undefined</keyword>
+      <keyword>union</keyword>
+      <keyword>unreachable</keyword>
+      <keyword>usingnamespace</keyword>
+      <keyword>var</keyword>
+      <keyword>volatile</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="constants" style-ref="constant">
+      <keyword>null</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>true</keyword>
+      <keyword>false</keyword>
+    </context>
+
+    <context id="types" style-ref="type">
+      <keyword>bool</keyword>
+      <keyword>isize</keyword>
+      <keyword>usize</keyword>
+      <keyword>f16</keyword>
+      <keyword>f32</keyword>
+      <keyword>f64</keyword>
+      <keyword>f80</keyword>
+      <keyword>f128</keyword>
+      <keyword>c_short</keyword>
+      <keyword>c_ushort</keyword>
+      <keyword>c_int</keyword>
+      <keyword>c_uint</keyword>
+      <keyword>c_long</keyword>
+      <keyword>c_ulong</keyword>
+      <keyword>c_longlong</keyword>
+      <keyword>c_void</keyword>
+      <keyword>noreturn</keyword>
+      <keyword>type</keyword>
+      <keyword>anyerror</keyword>
+      <keyword>comptime_int</keyword>
+      <keyword>comptime_float</keyword>
+      <keyword>void</keyword>
+    </context>
+
+    <define-regex id="exponent" extended="true">
+      ([eE][+-]?[0-9_]+)
+    </define-regex>
+
+    <define-regex id="float-suffix" extended="true">
+      \%{exponent}?|(\.[0-9][0-9_]*\%{exponent}?)?|\.
+    </define-regex>
+
+    <define-regex id="bin-digit" extended="true">
+      [01]
+    </define-regex>
+
+    <define-regex id="hex-digit" extended="true">
+      [0-9a-fA-F]
+    </define-regex>
+
+    <define-regex id="oct-digit" extended="true">
+      [0-7]
+    </define-regex>
+
+    <context id="integer-type" style-ref="type">
+      <match extended="true">
+        ((?&lt;=\.\.)|(?&lt;![\w\.]))
+        [ui][0-9]{1,5}
+        ((?![\w\.].)|(?=\.\.))
+      </match>
+    </context>
+
+    <context id="number" style-ref="number">
+      <match extended="true">
+        ((?&lt;=\.\.)|(?&lt;![\w\.]))
+        (
+        [0-9][0-9_]*\%{float-suffix}?|
+        0b(\%{bin-digit}|_)+|
+        0o(\%{oct-digit}|_)+|
+        0x(\%{hex-digit}|_)+
+        )
+        ((?![\w\.].)|(?=\.\.))
+      </match>
+    </context>
+
+    <context id="invalid-number" style-ref="error">
+      <match extended="true">
+        ((?&lt;=\.\.)|(?&lt;![\w\.]))
+        (
+        0b(\%{bin-digit}|_)*(?!\%{bin-digit}|_).\w*|
+        0o(\%{oct-digit}|_)*(?!\%{oct-digit}|_).\w*|
+        0x(\%{hex-digit}|_)*(?!\%{hex-digit}|_).\w*
+        )
+        ((?![\w\.].)|(?=\.\.))
+      </match>
+    </context>
+
+    <define-regex id="ident" extended="true">
+      ([^[:cntrl:][:space:][:punct:][:digit:]]|_)([^[:cntrl:][:punct:][:space:]]|_)*
+    </define-regex>
+
+    <define-regex id="common-escape" extended="true">
+      '|"|
+      \\|n|r|t|0|
+      x\%{hex-digit}{2}
+    </define-regex>
+
+    <define-regex id="unicode-escape" extended="true">
+      u{(\%{hex-digit}_*){1,6}}
+    </define-regex>
+
+    <context id="string-escape" style-ref="def:special-char">
+      <match>\\\%{common-escape}|\\\%{unicode-escape}</match>
+    </context>
+
+    <context id="byte-string-escape" style-ref="def:special-char">
+      <match>\\\%{common-escape}</match>
+    </context>
+
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="string-escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="multi-line-string" style-ref="string" class="string" class-disabled="no-spell-check" end-at-line-end="true">
+      <start>\\\\</start>
+      <include>
+        <context ref="string-escape"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="char" style-ref="char">
+      <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape})'</match>
+    </context>
+
+    <context id="invalid-char" style-ref="error">
+      <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape}){2,}'(?!\%{ident})</match>
+    </context>
+
+    <context id="byte" style-ref="char">
+      <match extended="true">b'([^\\']|\\\%{common-escape})'</match>
+    </context>
+
+    <context id="invalid-byte" style-ref="error">
+      <match extended="true">b'([^\\']|\\\%{common-escape}){2,}'</match>
+    </context>
+
+    <context id="invalid-whitespace" style-ref="error">
+      <match extended="true">[\r]</match>
+    </context>
+
+    <context id="zig" class="no-spell-check">
+      <include>
+        <context ref="def:c-like-comment" style-ref="comment"/>
+        <context ref="constants"/>
+        <context ref="function"/>
+        <context ref="type"/>
+        <context ref="keywords"/>
+        <context ref="types"/>
+        <context ref="boolean"/>
+        <context ref="number"/>
+        <context ref="invalid-number"/>
+        <context ref="string"/>
+        <context ref="multi-line-string"/>
+        <context ref="char"/>
+        <context ref="invalid-char"/>
+        <context ref="byte"/>
+        <context ref="invalid-byte"/>
+        <context ref="integer-type"/>
+        <context ref="invalid-whitespace"/>
+      </include>
+    </context>
+
+  </definitions>
+
+</language>
