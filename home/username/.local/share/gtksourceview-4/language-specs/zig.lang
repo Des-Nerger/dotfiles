@@ -25,15 +25,15 @@
       <keyword>fn</keyword>
     </context>
 
-    <context id="type" style-ref="keyword">
+    <!--context id="type" style-ref="keyword">
       <keyword>type</keyword>
-    </context>
+    </context-->
 
     <context id="keywords" style-ref="keyword">
       <keyword>align</keyword>
       <keyword>allowzero</keyword>
-      <keyword>anytype</keyword>
       <keyword>and</keyword>
+      <keyword>anytype</keyword>
       <keyword>asm</keyword>
       <keyword>async</keyword>
       <keyword>await</keyword>
@@ -69,7 +69,6 @@
       <keyword>test</keyword>
       <keyword>threadlocal</keyword>
       <keyword>try</keyword>
-      <keyword>undefined</keyword>
       <keyword>union</keyword>
       <keyword>unreachable</keyword>
       <keyword>usingnamespace</keyword>
@@ -80,6 +79,7 @@
 
     <context id="constants" style-ref="constant">
       <keyword>null</keyword>
+      <keyword>undefined</keyword>
     </context>
 
     <context id="boolean" style-ref="boolean">
@@ -229,7 +229,7 @@
         <context ref="def:c-like-comment" style-ref="comment"/>
         <context ref="constants"/>
         <context ref="function"/>
-        <context ref="type"/>
+        <!-- context ref="type"/ -->
         <context ref="keywords"/>
         <context ref="types"/>
         <context ref="boolean"/>
