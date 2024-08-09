@@ -135,7 +135,7 @@ except according to those terms.
       <keyword>f32</keyword>
       <keyword>f64</keyword>
       <keyword>char</keyword>
-      <keyword>str</keyword>
+      <!-- keyword>str</keyword -->
       <keyword>const</keyword>
       <keyword>mut</keyword>
       <keyword>static</keyword>
