@@ -105,7 +105,7 @@
       <keyword>c_longlong</keyword>
       <keyword>c_void</keyword>
       <keyword>noreturn</keyword>
-      <keyword>type</keyword>
+      <!--keyword>type</keyword-->
       <keyword>anyerror</keyword>
       <keyword>comptime_int</keyword>
       <keyword>comptime_float</keyword>

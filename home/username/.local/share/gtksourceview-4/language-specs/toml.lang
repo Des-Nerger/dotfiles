@@ -226,14 +226,14 @@
     </context>
 
     <!--
-    []     # INVALID
+    ~~[]     # INVALID~~
     [a.]   # INVALID
     [a..b] # INVALID
     [.b]   # INVALID
     [.]    # INVALID
     -->
     <context id="invalid-table-error" style-ref="error">
-      <match>^\s*\[(\.?|[^.]+\.{2,}[^.]+|\.+[^.]+|[^.]+\.+|\.+[^.]+\.+)\]\s*(#.*)?$</match>
+      <match>^\s*\[(\.|[^.]+\.{2,}[^.]+|\.+[^.]+|[^.]+\.+|\.+[^.]+\.+)\]\s*(#.*)?$</match>
     </context>
 
     <context id="invalid-array-error" style-ref="error">
